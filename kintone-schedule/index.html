@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>kintone導入 フェーズスケジュール｜株式会社樹サイン</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#F5F1E8;color:#1E3A2B;font-family:'Noto Sans JP',sans-serif;-webkit-font-smoothing:antialiased;line-height:1.7}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+header{background:#1E3A2B;color:#F4E9D8;padding:44px 0 38px;margin-bottom:34px}
+header .wrap{padding-bottom:0}
+h1{font-family:'Noto Serif JP',serif;font-size:30px;font-weight:900;letter-spacing:.04em;margin-bottom:10px}
+.sub{font-size:14px;color:#C9D4CC}
+h2{font-family:'Noto Serif JP',serif;font-size:20px;font-weight:700;margin:44px 0 14px;padding-left:12px;border-left:5px solid #9B4527}
+.lead{background:#fff;border:1px solid #C9D4CC;border-radius:6px;padding:20px 22px;font-size:14.5px}
+.lead b{color:#9B4527}
+table{width:100%;border-collapse:collapse;background:#fff;font-size:13.5px;border:1px solid #C9D4CC}
+th,td{border:1px solid #C9D4CC;padding:9px 11px;vertical-align:top;text-align:left}
+th{background:#1E3A2B;color:#F4E9D8;font-weight:700;white-space:nowrap}
+.gantt th.m{width:9%;text-align:center;font-size:12.5px}
+.gantt td.m{padding:0;text-align:center}
+.gantt td.ph{width:19%;font-weight:700}
+.gantt td.nm{width:26%}
+.bar{display:block;height:22px;margin:4px 3px;border-radius:3px}
+.b1{background:#1E3A2B}
+.b2{background:#5C6B60}
+.b3{background:#9B4527}
+.tag{display:inline-block;font-size:11px;font-weight:700;color:#fff;background:#9B4527;border-radius:3px;padding:1px 7px;margin-left:6px;vertical-align:2px}
+.tag.g{background:#1E3A2B}
+.tag.o{background:#5C6B60}
+.done{color:#1E3A2B;font-weight:700}
+.todo{color:#5C6B60}
+ul{margin:0;padding-left:18px}
+li{margin-bottom:4px}
+.note{font-size:12.5px;color:#5C6B60;margin-top:10px}
+.phasebox{background:#fff;border:1px solid #C9D4CC;border-top:4px solid #1E3A2B;border-radius:4px;padding:20px 22px;margin-bottom:18px}
+.phasebox.p2{border-top-color:#5C6B60}
+.phasebox.p3{border-top-color:#9B4527}
+.phasebox h3{font-family:'Noto Serif JP',serif;font-size:17px;margin-bottom:4px}
+.phasebox .term{font-size:12.5px;color:#9B4527;font-weight:700;margin-bottom:12px}
+.goal{background:#F4E9D8;border-radius:4px;padding:10px 13px;font-size:13.5px;margin-bottom:13px}
+footer{margin-top:50px;padding-top:18px;border-top:1px solid #C9D4CC;font-size:12.5px;color:#5C6B60}
+@media(max-width:720px){
+ h1{font-size:22px}
+ table{font-size:12px}
+ th,td{padding:6px 7px}
+ .gantt td.ph,.gantt td.nm{width:auto}
+}
+
+#auth-screen{position:fixed;inset:0;background:#1E3A2B;display:flex;align-items:center;justify-content:center;z-index:999;padding:20px}
+.authbox{background:#F5F1E8;border-radius:8px;padding:38px 34px;max-width:400px;width:100%;text-align:center;box-shadow:0 14px 44px rgba(0,0,0,.35)}
+.authbox h2{font-family:'Noto Serif JP',serif;font-size:19px;margin:0 0 6px;padding:0;border:none;color:#1E3A2B}
+.authbox p{font-size:12.5px;color:#5C6B60;margin-bottom:20px}
+.authbox input{width:100%;padding:11px 13px;border:1px solid #C9D4CC;border-radius:4px;font-size:15px;font-family:inherit;margin-bottom:12px}
+.authbox input:focus{outline:none;border-color:#1E3A2B}
+.authbox button{width:100%;padding:11px;background:#1E3A2B;color:#F4E9D8;border:none;border-radius:4px;font-size:14.5px;font-weight:700;font-family:inherit;cursor:pointer}
+.authbox button:hover{background:#2c5340}
+#auth-error{display:none;color:#9B4527;font-size:12.5px;margin-top:10px;font-weight:700}
+#report-content{display:none}
+</style>
+</head>
+<body>
+<div id="auth-screen">
+  <div class="authbox">
+    <h2>株式会社樹サイン</h2>
+    <p>kintone導入 フェーズスケジュール<br>パスワードを入力してください</p>
+    <input type="password" id="password-input" placeholder="パスワード" autocomplete="off">
+    <button onclick="checkPassword()">表示する</button>
+    <div id="auth-error">パスワードが違います</div>
+  </div>
+</div>
+
+<div id="report-content">
+
+<header>
+<div class="wrap">
+<h1>kintone導入 フェーズスケジュール</h1>
+<div class="sub">株式会社樹サイン ／ 2026年8月 &ndash; 12月 ／ 2026年7月28日 定例MTGの決定にもとづく</div>
+</div>
+</header>
+
+<div class="wrap">
+
+<div class="lead">
+kintoneは一度に完成させず、<b>3つのフェーズに分けて段階的に切り替えます</b>。<br>
+いまはフェーズ1です。まず「案件管理 → 受注管理 → 会計管理」の1本の流れだけをkintoneに乗せ、全員がその操作に慣れることを最優先にします。<br>
+見積書の作成は当面Excelのままです。項目数が100〜200に及び、テンプレートを4種類以上使い分けている現状をkintoneで再現するのは、いまの段階では現実的ではないと判断しました。
+</div>
+
+<h2>全体スケジュール</h2>
+
+<table class="gantt">
+<tr>
+<th>フェーズ</th><th>やること</th>
+<th class="m">8月</th><th class="m">9月</th><th class="m">10月</th><th class="m">11月</th><th class="m">12月</th>
+</tr>
+<tr>
+<td class="ph">フェーズ1</td><td class="nm">基本フローをkintoneに乗せる</td>
+<td class="m"><span class="bar b1"></span></td><td class="m"><span class="bar b1"></span></td><td class="m"></td><td class="m"></td><td class="m"></td>
+</tr>
+<tr>
+<td class="ph">フェーズ2</td><td class="nm">現場運用の定着と発注漏れ対策</td>
+<td class="m"></td><td class="m"><span class="bar b2"></span></td><td class="m"><span class="bar b2"></span></td><td class="m"></td><td class="m"></td>
+</tr>
+<tr>
+<td class="ph">フェーズ3</td><td class="nm">集計・自動化と年度切り替え準備</td>
+<td class="m"></td><td class="m"></td><td class="m"></td><td class="m"><span class="bar b3"></span></td><td class="m"><span class="bar b3"></span></td>
+</tr>
+</table>
+<p class="note">確定している日程は<b>8月7日(水)13:00-14:00の定例MTG</b>のみです。それ以外の月配置は目安であり、各フェーズの完了状況を見て前後します。</p>
+
+<h2>フェーズ1｜基本フローをkintoneに乗せる</h2>
+
+<div class="phasebox">
+<h3>2026年8月 &ndash; 9月</h3>
+<div class="term">ゴール：営業が案件を入力し、経理が請求書を出すまでが、kintoneだけで一周する</div>
+
+<div class="goal"><b>kintone側の構築</b>（7/28MTG後に実施済み）</div>
+<ul>
+<li class="done">「発注管理」アプリを<b>「受注管理」</b>に名称変更</li>
+<li class="done">受注管理に <b>案件番号</b>（260001形式で自動採番）／<b>請求書発行希望日</b>／<b>受注金額</b>／<b>残金</b> を追加</li>
+<li class="done">受注金額＝見積テーブルで「成約」にチェックした行の金額。残金＝受注金額 − 入金額合計を自動計算</li>
+<li class="done">案件状況が「完了」になると<b>「請求」ボタン</b>が出現。押すと会計管理の請求書発行日に当日の日付が入る</li>
+<li class="done">案件管理の見積書No.から<b>見積作成アプリへのルックアップを解除</b>（既存72件の値はそのまま保持）</li>
+<li class="done">案件管理の「見積作成へ登録」ボタンを削除</li>
+</ul>
+
+<div class="goal" style="margin-top:16px"><b>運用ルール</b></div>
+<ul>
+<li>すべての引き合いを案件管理に登録する。失注案件も会社の資産なので、会社名と工事名称だけでも残す</li>
+<li>案件発生の時点では番号を振らない。kintoneのレコード番号で管理する</li>
+<li>案件番号は、成約して「受注管理へ登録」を押した時点で自動採番される</li>
+<li>見積書の作成・見積書Noの採番は、これまでどおりExcelで行う</li>
+<li>請求は、営業が「請求書発行希望日」を入れ、経理（浅見さん）が発行後に「請求書発行日」を確認する</li>
+</ul>
+
+<div class="goal" style="margin-top:16px"><b>直近のマイルストーン</b></div>
+<ul>
+<li><b>8月7日(水) 13:00-14:00</b>　定例MTG。構築した画面を見ながら仕様確認</li>
+<li>8月中　営業メンバーが実案件で入力を開始</li>
+<li>9月中　入力の抜け・使いにくい箇所を洗い出して修正</li>
+</ul>
+<p class="note">夏季休暇中の出勤日は8月10日・15日です。</p>
+</div>
+
+<h2>フェーズ2｜現場運用の定着と発注漏れ対策</h2>
+
+<div class="phasebox p2">
+<h3>2026年9月 &ndash; 10月</h3>
+<div class="term">ゴール：発注忘れが起きない状態をつくる</div>
+<ul>
+<li>野川さんがAIで作成した<b>発注管理用Excelシート</b>を、まず社内で定着させる</li>
+<li>「未発注／一部発注／発注済」の発注状況と発注期限を運用に乗せ、期限超過の未発注案件を赤表示する</li>
+<li>受注管理の<b>権限分離</b>。請求金額・利益率・入金状況が全社員に見えている状態を、営業と経理に限定する</li>
+<li>受注管理から元の案件管理レコードへ戻る導線をつくる</li>
+</ul>
+<p class="note">100行を超える品目単位の発注管理は、このフェーズではkintoneに実装しません。Excel運用を先行させます。</p>
+</div>
+
+<h2>フェーズ3｜集計・自動化と年度切り替え準備</h2>
+
+<div class="phasebox p3">
+<h3>2026年11月 &ndash; 12月</h3>
+<div class="term">ゴール：数字が自動で集まり、来年度に引き継げる状態にする</div>
+<ul>
+<li>担当者別の<b>受注件数</b>・<b>発注漏れ件数</b>のグラフをポータルに追加</li>
+<li>Excelにマクロボタンをつけてkintoneインポート用CSVを生成、または特定フォルダをAIが監視して自動取り込みする仕組みを検証</li>
+<li><b>年度またぎのルール確定</b>。年度末に「未検収」の案件だけをCSVで一括抽出し、翌年度のアプリにインポートする。担当者の判断には委ねず、全社一律で一括処理する</li>
+<li>2027年度アプリの準備（案件番号は「27」始まりでリセット）</li>
+</ul>
+</div>
+
+<h2>フェーズ4以降として保留にしたもの</h2>
+<table>
+<tr><th style="width:32%">項目</th><th>保留の理由</th></tr>
+<tr><td>見積書作成のkintone化</td><td>大型物件で項目数が100〜200、内訳の階層構造と顧客ごとに異なる諸経費の計算があり、テンプレートも4種類以上を案件ごとに改造している。当面はExcelを継続する</td></tr>
+<tr><td>発注管理の品目単位管理</td><td>1案件で100行以上になるため、入力負担が大きい。基本フローの定着を優先する</td></tr>
+<tr><td>看板1枚単位のアイテム管理</td><td>効果は大きいが入力負担とのバランスを見て、フェーズ3の集計が動いてから判断する</td></tr>
+</table>
+
+<footer>
+株式会社樹サイン kintone導入プロジェクト ／ 作成日 2026年7月29日<br>
+出典：2026年7月28日 kintone定例MTG議事録。8月7日以外の日程は目安であり、確定ではありません。
+</footer>
+
+</div>
+</div>
+
+<script>
+const HASH = "87184a0a1cbb42b68e9c8578dbed9c8e444ee3dd7d84808ac62737b24c56e9f7";
+async function sha256(str){
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,"0")).join("");
+}
+async function checkPassword(){
+  const input = document.getElementById("password-input").value;
+  if(await sha256(input) === HASH){
+    document.getElementById("auth-screen").style.display="none";
+    document.getElementById("report-content").style.display="block";
+    sessionStorage.setItem("itsuki_kintone_schedule","1");
+  } else {
+    document.getElementById("auth-error").style.display="block";
+    document.getElementById("password-input").value="";
+  }
+}
+document.getElementById("password-input").addEventListener("keydown", e=>{ if(e.key==="Enter") checkPassword(); });
+if(sessionStorage.getItem("itsuki_kintone_schedule")==="1"){
+  document.getElementById("auth-screen").style.display="none";
+  document.getElementById("report-content").style.display="block";
+}
+</script>
+
+</body>
+</html>
